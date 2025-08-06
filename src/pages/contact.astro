@@ -1,0 +1,866 @@
+---
+
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Contact Us - Elite HVAC Solutions</title>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+		<style>
+			:root {
+				--primary-color: #0066FF;
+				--secondary-color: #1a1a1a;
+				--accent-color: #FF6B35;
+				--text-primary: #1a1a1a;
+				--text-secondary: #666;
+				--text-light: #999;
+				--bg-primary: #ffffff;
+				--bg-secondary: #f8fafc;
+				--border-color: #e2e8f0;
+				--shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+				--shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+				--shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+				--shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+			}
+			
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				line-height: 1.6;
+				color: var(--text-primary);
+				background: var(--bg-primary);
+				font-weight: 400;
+			}
+			
+			/* Navigation */
+			nav {
+				position: fixed;
+				top: 0;
+				width: 100%;
+				background: rgba(255, 255, 255, 0.95);
+				backdrop-filter: blur(10px);
+				border-bottom: 1px solid var(--border-color);
+				z-index: 1000;
+				transition: all 0.3s ease;
+			}
+			
+			.nav-container {
+				max-width: 1280px;
+				margin: 0 auto;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 0 1rem;
+				height: 70px;
+				min-height: 70px;
+			}
+			
+			.logo {
+				color: var(--primary-color);
+				font-size: clamp(1.25rem, 3vw, 1.75rem);
+				font-weight: 800;
+				text-decoration: none;
+				letter-spacing: -0.025em;
+				white-space: nowrap;
+			}
+			
+			.nav-links {
+				display: flex;
+				list-style: none;
+				gap: clamp(1rem, 2vw, 2.5rem);
+				margin: 0;
+				padding: 0;
+			}
+			
+			.nav-links a {
+				color: var(--text-primary);
+				text-decoration: none;
+				font-weight: 600;
+				font-size: clamp(0.8rem, 1.5vw, 0.95rem);
+				transition: all 0.3s ease;
+				position: relative;
+				white-space: nowrap;
+				padding: 0.5rem 0;
+			}
+			
+			.nav-links a:hover {
+				color: var(--primary-color);
+			}
+			
+			.nav-links a::after {
+				content: '';
+				position: absolute;
+				width: 0;
+				height: 2px;
+				bottom: -2px;
+				left: 0;
+				background: var(--primary-color);
+				transition: width 0.3s ease;
+			}
+			
+			.nav-links a:hover::after {
+				width: 100%;
+			}
+
+			/* Mobile menu toggle */
+			.mobile-menu-toggle {
+				display: none;
+				background: none;
+				border: none;
+				width: 40px;
+				height: 40px;
+				color: var(--text-primary);
+				cursor: pointer;
+				padding: 0;
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				transition: all 0.3s ease;
+			}
+
+			.mobile-menu-toggle span {
+				display: block;
+				width: 24px;
+				height: 2px;
+				background: var(--text-primary);
+				margin: 3px 0;
+				transition: all 0.3s ease;
+				transform-origin: center;
+			}
+
+			.mobile-menu-toggle.active span:nth-child(1) {
+				transform: rotate(45deg) translate(7px, 7px);
+			}
+
+			.mobile-menu-toggle.active span:nth-child(2) {
+				opacity: 0;
+			}
+
+			.mobile-menu-toggle.active span:nth-child(3) {
+				transform: rotate(-45deg) translate(7px, -7px);
+			}
+
+			.mobile-nav {
+				display: none;
+				position: absolute;
+				top: 100%;
+				left: 0;
+				right: 0;
+				background: rgba(255, 255, 255, 0.98);
+				backdrop-filter: blur(10px);
+				border-bottom: 1px solid var(--border-color);
+				box-shadow: var(--shadow-lg);
+			}
+
+			.mobile-nav.open {
+				display: block;
+			}
+
+			.mobile-nav ul {
+				list-style: none;
+				padding: 1rem 0;
+				margin: 0;
+			}
+
+			.mobile-nav li {
+				text-align: center;
+			}
+
+			.mobile-nav a {
+				display: block;
+				padding: 1rem;
+				color: var(--text-primary);
+				text-decoration: none;
+				font-weight: 500;
+				font-size: 1rem;
+				transition: all 0.3s ease;
+			}
+
+			.mobile-nav a:hover {
+				background: var(--bg-secondary);
+				color: var(--primary-color);
+			}
+			
+			/* Page Header */
+			.page-header {
+				background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+				padding: 6rem 2rem 4rem;
+				margin-top: 70px;
+				text-align: center;
+				position: relative;
+				overflow: hidden;
+			}
+			
+			.page-header::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230066FF' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+				opacity: 0.5;
+			}
+			
+			.page-header-content {
+				max-width: 1280px;
+				margin: 0 auto;
+				position: relative;
+				z-index: 1;
+			}
+			
+			.page-header h1 {
+				font-size: clamp(2.5rem, 5vw, 3.5rem);
+				font-weight: 700;
+				color: var(--text-primary);
+				margin-bottom: 1.5rem;
+				letter-spacing: -0.025em;
+			}
+			
+			.page-header .highlight {
+				color: var(--primary-color);
+			}
+			
+			.page-header p {
+				font-size: 1.25rem;
+				color: var(--text-secondary);
+				max-width: 700px;
+				margin: 0 auto;
+				line-height: 1.7;
+			}
+			
+			/* Main Content */
+			main {
+				padding: 6rem 2rem;
+			}
+			
+			.content-container {
+				max-width: 1280px;
+				margin: 0 auto;
+			}
+			
+			.contact-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 6rem;
+				margin-bottom: 6rem;
+			}
+			
+			.contact-info {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 2rem;
+			}
+			
+			.contact-card {
+				background: white;
+				padding: 2.5rem;
+				border-radius: 20px;
+				box-shadow: var(--shadow-sm);
+				border: 1px solid var(--border-color);
+				transition: all 0.3s ease;
+				position: relative;
+				overflow: hidden;
+			}
+			
+			.contact-card:hover {
+				transform: translateY(-4px);
+				box-shadow: var(--shadow-lg);
+			}
+			
+			.contact-card::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 4px;
+				background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+			}
+			
+			.contact-header {
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+				margin-bottom: 1.5rem;
+			}
+			
+			.contact-icon {
+				width: 60px;
+				height: 60px;
+				background: linear-gradient(135deg, var(--primary-color), #4A90E2);
+				border-radius: 16px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.5rem;
+				flex-shrink: 0;
+			}
+			
+			.contact-card h3 {
+				font-size: 1.5rem;
+				font-weight: 600;
+				color: var(--text-primary);
+				letter-spacing: -0.025em;
+			}
+			
+			.contact-card p {
+				color: var(--text-secondary);
+				margin-bottom: 0.75rem;
+				font-size: 1rem;
+				line-height: 1.6;
+			}
+			
+			.contact-card strong {
+				color: var(--text-primary);
+				font-weight: 600;
+			}
+			
+			/* Contact Form */
+			.contact-form {
+				background: white;
+				padding: 3rem;
+				border-radius: 24px;
+				box-shadow: var(--shadow-lg);
+				position: relative;
+			}
+			
+			.contact-form h2 {
+				font-size: 2rem;
+				font-weight: 700;
+				color: var(--text-primary);
+				margin-bottom: 1rem;
+				letter-spacing: -0.025em;
+			}
+			
+			.contact-form p {
+				color: var(--text-secondary);
+				margin-bottom: 2rem;
+				font-size: 1.125rem;
+			}
+			
+			.form-group {
+				margin-bottom: 1.5rem;
+			}
+			
+			.form-group label {
+				display: block;
+				margin-bottom: 0.5rem;
+				font-weight: 600;
+				color: var(--text-primary);
+				font-size: 0.95rem;
+			}
+			
+			.form-group input,
+			.form-group textarea,
+			.form-group select {
+				width: 100%;
+				padding: 1rem;
+				border: 2px solid var(--border-color);
+				border-radius: 12px;
+				font-size: 1rem;
+				font-family: inherit;
+				background: var(--bg-secondary);
+				color: var(--text-primary);
+				transition: all 0.3s ease;
+			}
+			
+			.form-group input:focus,
+			.form-group textarea:focus,
+			.form-group select:focus {
+				outline: none;
+				border-color: var(--primary-color);
+				background: white;
+				box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+			}
+			
+			.form-group textarea {
+				min-height: 120px;
+				resize: vertical;
+			}
+			
+			.submit-button {
+				background: var(--primary-color);
+				color: white;
+				padding: 1rem 2rem;
+				border: none;
+				border-radius: 12px;
+				font-weight: 600;
+				font-size: 1rem;
+				cursor: pointer;
+				transition: all 0.3s ease;
+				box-shadow: var(--shadow-md);
+				width: 100%;
+			}
+			
+			.submit-button:hover {
+				background: #0052CC;
+				transform: translateY(-2px);
+				box-shadow: var(--shadow-lg);
+			}
+			
+			/* Emergency Section */
+			.emergency {
+				background: var(--accent-color);
+				color: white;
+				text-align: center;
+				padding: 4rem 2rem;
+				border-radius: 24px;
+				position: relative;
+				overflow: hidden;
+			}
+			
+			.emergency::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: linear-gradient(135deg, var(--accent-color) 0%, #E55A2B 100%);
+				z-index: -1;
+			}
+			
+			.emergency-content {
+				max-width: 600px;
+				margin: 0 auto;
+				position: relative;
+				z-index: 1;
+			}
+			
+			.emergency h2 {
+				font-size: 2.5rem;
+				font-weight: 700;
+				margin-bottom: 1rem;
+				letter-spacing: -0.025em;
+			}
+			
+			.emergency p {
+				font-size: 1.25rem;
+				margin-bottom: 2rem;
+				line-height: 1.6;
+			}
+			
+			.emergency-phone {
+				background: white;
+				color: var(--accent-color);
+				padding: 1rem 2rem;
+				border-radius: 12px;
+				font-weight: 700;
+				font-size: 1.25rem;
+				text-decoration: none;
+				display: inline-block;
+				transition: all 0.3s ease;
+				box-shadow: var(--shadow-md);
+			}
+			
+			.emergency-phone:hover {
+				transform: translateY(-2px);
+				box-shadow: var(--shadow-lg);
+			}
+			
+			/* Footer */
+			footer {
+				background: var(--secondary-color);
+				color: white;
+				padding: 4rem 2rem 2rem;
+			}
+			
+			.footer-container {
+				max-width: 1280px;
+				margin: 0 auto;
+			}
+			
+			.footer-content {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 3rem;
+				margin-bottom: 3rem;
+			}
+			
+			.footer-section h3 {
+				font-size: 1.5rem;
+				font-weight: 700;
+				margin-bottom: 1.5rem;
+				color: var(--primary-color);
+			}
+			
+			.footer-section p,
+			.footer-section a {
+				color: #ccc;
+				text-decoration: none;
+				font-size: 1rem;
+				line-height: 1.6;
+				margin-bottom: 0.75rem;
+				display: block;
+			}
+			
+			.footer-section a:hover {
+				color: var(--primary-color);
+				transition: color 0.3s ease;
+			}
+			
+			.contact-info {
+				display: flex;
+				flex-direction: column;
+				gap: 0.75rem;
+			}
+			
+			.contact-item {
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+			}
+			
+			.contact-icon {
+				width: 20px;
+				height: 20px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1rem;
+				color: var(--primary-color);
+			}
+			
+			.social-links {
+				display: flex;
+				gap: 1rem;
+				margin-top: 1rem;
+			}
+			
+			.social-link {
+				width: 44px;
+				height: 44px;
+				background: rgba(255, 255, 255, 0.1);
+				border-radius: 12px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: #ccc;
+				text-decoration: none;
+				font-size: 1.25rem;
+				transition: all 0.3s ease;
+			}
+			
+			.social-link:hover {
+				background: var(--primary-color);
+				color: white;
+				transform: translateY(-2px);
+			}
+			
+			.review-button {
+				background: var(--primary-color);
+				color: white;
+				padding: 1rem 1.5rem;
+				border-radius: 8px;
+				text-decoration: none;
+				font-weight: 600;
+				display: inline-block;
+				transition: all 0.3s ease;
+				margin-top: 1rem;
+			}
+			
+			.review-button:hover {
+				background: #0052CC;
+				transform: translateY(-2px);
+				box-shadow: var(--shadow-md);
+			}
+			
+			.footer-bottom {
+				border-top: 1px solid rgba(255, 255, 255, 0.1);
+				padding-top: 2rem;
+				text-align: center;
+				color: #999;
+				font-size: 0.9rem;
+			}
+			
+			/* Responsive Design */
+			@media (max-width: 1024px) {
+				.nav-container {
+					padding: 0 1rem;
+				}
+			}
+			
+			@media (max-width: 768px) {
+				.nav-links {
+					display: none;
+				}
+				
+				.mobile-menu-toggle {
+					display: block;
+				}
+				
+				.page-header {
+					padding: 4rem 1rem 3rem;
+				}
+				
+				.contact-grid {
+					grid-template-columns: 1fr;
+					gap: 3rem;
+				}
+				
+				.contact-info {
+					grid-template-columns: 1fr;
+				}
+				
+				.contact-form {
+					padding: 2rem;
+				}
+				
+				.footer-content {
+					grid-template-columns: 1fr;
+					gap: 2rem;
+				}
+			}
+			
+			@media (max-width: 480px) {
+				.page-header {
+					padding: 3rem 0.5rem 2rem;
+				}
+				
+				.emergency {
+					padding: 3rem 1rem;
+				}
+				
+				.contact-card {
+					padding: 2rem;
+				}
+				
+				footer {
+					padding: 2rem 1rem 1rem;
+				}
+			}
+			
+			@media (max-width: 360px) {
+				.nav-container {
+					padding: 0 0.5rem;
+				}
+				
+				.logo {
+					font-size: 1.25rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<nav>
+			<div class="nav-container">
+				<a href="/" class="logo">Elite HVAC</a>
+				<ul class="nav-links">
+					<li><a href="/schedule">Request Quote</a></li>
+					<li><a href="/about">About Us</a></li>
+					<li><a href="/">Home</a></li>
+				</ul>
+				<button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+					<span></span>
+					<span></span>
+					<span></span>
+				</button>
+			</div>
+			<div class="mobile-nav" id="mobile-nav">
+				<ul>
+					<li><a href="/schedule">Request Quote</a></li>
+					<li><a href="/about">About Us</a></li>
+					<li><a href="/">Home</a></li>
+				</ul>
+			</div>
+		</nav>
+		
+		<section class="page-header">
+			<div class="page-header-content">
+				<h1>Get in <span class="highlight">Touch</span></h1>
+				<p>Ready to experience premium HVAC service? Contact us today for expert consultation and support</p>
+			</div>
+		</section>
+		
+		<main>
+			<div class="content-container">
+				<div class="contact-grid">
+					<div class="contact-info">
+						<div class="contact-card">
+							<div class="contact-header">
+								<div class="contact-icon">📞</div>
+								<h3>Phone</h3>
+							</div>
+							<p><strong>Main Office:</strong> (555) 123-4567</p>
+							<p><strong>Emergency Line:</strong> (555) 987-6543</p>
+							<p style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.5rem;">Available 24/7 for emergencies</p>
+						</div>
+						
+						<div class="contact-card">
+							<div class="contact-header">
+								<div class="contact-icon">📍</div>
+								<h3>Address</h3>
+							</div>
+							<p>123 Professional Drive</p>
+							<p>Suite 200</p>
+							<p>Anytown, ST 12345</p>
+							<p style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.5rem;">Free on-site estimates</p>
+						</div>
+						
+						<div class="contact-card">
+							<div class="contact-header">
+								<div class="contact-icon">✉️</div>
+								<h3>Email</h3>
+							</div>
+							<p><strong>General:</strong> info@elitehvac.com</p>
+							<p><strong>Service:</strong> service@elitehvac.com</p>
+							<p><strong>Emergency:</strong> emergency@elitehvac.com</p>
+							<p style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.5rem;">We respond within 2 hours</p>
+						</div>
+						
+						<div class="contact-card">
+							<div class="contact-header">
+								<div class="contact-icon">🕒</div>
+								<h3>Business Hours</h3>
+							</div>
+							<p><strong>Monday - Friday:</strong> 7:00 AM - 7:00 PM</p>
+							<p><strong>Saturday:</strong> 8:00 AM - 5:00 PM</p>
+							<p><strong>Sunday:</strong> 9:00 AM - 3:00 PM</p>
+							<p style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.5rem;">Emergency service 24/7</p>
+						</div>
+					</div>
+					
+					<div class="contact-form">
+						<h2>Request a Quote</h2>
+						<p>Fill out the form below and we'll get back to you with a personalized quote within 24 hours.</p>
+						
+						<form>
+							<div class="form-group">
+								<label for="name">Full Name *</label>
+								<input type="text" id="name" name="name" required>
+							</div>
+							
+							<div class="form-group">
+								<label for="email">Email Address *</label>
+								<input type="email" id="email" name="email" required>
+							</div>
+							
+							<div class="form-group">
+								<label for="phone">Phone Number *</label>
+								<input type="tel" id="phone" name="phone" required>
+							</div>
+							
+							<div class="form-group">
+								<label for="service">Service Type</label>
+								<select id="service" name="service">
+									<option value="">Select a service</option>
+									<option value="heating">Heating Services</option>
+									<option value="cooling">Air Conditioning</option>
+									<option value="ventilation">Ventilation</option>
+									<option value="maintenance">Maintenance</option>
+									<option value="emergency">Emergency Repair</option>
+									<option value="installation">New Installation</option>
+								</select>
+							</div>
+							
+							<div class="form-group">
+								<label for="message">Message *</label>
+								<textarea id="message" name="message" placeholder="Please describe your HVAC needs or any specific issues you're experiencing..." required></textarea>
+							</div>
+							
+							<button type="submit" class="submit-button">Send Message</button>
+						</form>
+					</div>
+				</div>
+				
+				<div class="emergency">
+					<div class="emergency-content">
+						<h2>🚨 24/7 Emergency Service</h2>
+						<p>HVAC emergency? Don't wait! Our certified technicians are standing by to restore your comfort immediately.</p>
+						<a href="tel:5559876543" class="emergency-phone">Call Now: (555) 987-6543</a>
+					</div>
+				</div>
+			</div>
+		</main>
+		
+		<footer>
+			<div class="footer-container">
+				<div class="footer-content">
+					<div class="footer-section">
+						<h3>Elite HVAC Solutions</h3>
+						<p>Professional HVAC services with over 20 years of excellence. Licensed, insured, and committed to your comfort.</p>
+					</div>
+					
+					<div class="footer-section">
+						<h3>Business Hours</h3>
+						<p><strong>Monday - Friday:</strong> 7:00 AM - 7:00 PM</p>
+						<p><strong>Saturday:</strong> 8:00 AM - 5:00 PM</p>
+						<p><strong>Sunday:</strong> 9:00 AM - 3:00 PM</p>
+						<p><strong>Emergency:</strong> 24/7 Available</p>
+					</div>
+					
+					<div class="footer-section">
+						<h3>Contact Info</h3>
+						<div class="contact-info">
+							<div class="contact-item">
+								<span class="contact-icon">📞</span>
+								<a href="tel:5551234567">(555) 123-4567</a>
+							</div>
+							<div class="contact-item">
+								<span class="contact-icon">🚨</span>
+								<a href="tel:5559876543">(555) 987-6543 Emergency</a>
+							</div>
+							<div class="contact-item">
+								<span class="contact-icon">📍</span>
+								<span>123 Professional Drive<br>Suite 200<br>Anytown, ST 12345</span>
+							</div>
+							<div class="contact-item">
+								<span class="contact-icon">✉️</span>
+								<a href="mailto:info@elitehvac.com">info@elitehvac.com</a>
+							</div>
+						</div>
+					</div>
+					
+					<div class="footer-section">
+						<h3>Our Credentials</h3>
+						<p>✓ Licensed & Insured</p>
+						<p>✓ NATE Certified Technicians</p>
+						<p>✓ EPA Universal Certified</p>
+						<p>✓ Better Business Bureau A+</p>
+					</div>
+				</div>
+				
+				<div class="footer-bottom">
+					<p>&copy; 2025 Elite HVAC Solutions. All rights reserved. | Licensed & Insured | 24/7 Emergency Service</p>
+				</div>
+			</div>
+		</footer>
+		
+		<script>
+			function toggleMobileMenu() {
+				const mobileNav = document.getElementById('mobile-nav');
+				const toggle = document.querySelector('.mobile-menu-toggle');
+				mobileNav.classList.toggle('open');
+				toggle.classList.toggle('active');
+			}
+			
+			// Close mobile menu when clicking on a link
+			document.querySelectorAll('.mobile-nav a').forEach(link => {
+				link.addEventListener('click', () => {
+					document.getElementById('mobile-nav').classList.remove('open');
+				});
+			});
+			
+			// Close mobile menu when clicking outside
+			document.addEventListener('click', (e) => {
+				const nav = document.querySelector('nav');
+				const mobileNav = document.getElementById('mobile-nav');
+				if (!nav.contains(e.target) && mobileNav.classList.contains('open')) {
+					mobileNav.classList.remove('open');
+				}
+			});
+		</script>
+	</body>
+</html>
