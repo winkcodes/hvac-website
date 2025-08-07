@@ -178,6 +178,18 @@
 
 			.mobile-nav.open {
 				display: block;
+				animation: slideDown 0.3s ease;
+			}
+			
+			@keyframes slideDown {
+				from {
+					opacity: 0;
+					transform: translateY(-10px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
 			}
 
 			.mobile-nav ul {
@@ -804,10 +816,18 @@
 		
 		<script>
 			function toggleMobileMenu() {
+				console.log('toggleMobileMenu called');
 				const mobileNav = document.getElementById('mobile-nav');
 				const toggle = document.querySelector('.mobile-menu-toggle');
-				mobileNav.classList.toggle('open');
-				toggle.classList.toggle('active');
+				
+				if (mobileNav && toggle) {
+					console.log('Elements found, toggling');
+					mobileNav.classList.toggle('open');
+					toggle.classList.toggle('active');
+					console.log('Mobile nav has open class:', mobileNav.classList.contains('open'));
+				} else {
+					console.error('Elements not found:', { mobileNav, toggle });
+				}
 			}
 			
 			// Close mobile menu when clicking on a link
